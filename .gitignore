@@ -1,0 +1,9 @@
+# Media & Reference Video
+Video-69827.mp4
+Young Man Overlooking a Mountain Valley.png
+cv_frames/
+
+# System & Temp
+.DS_Store
+Thumbs.db
+*.tmp

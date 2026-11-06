@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rohan Kushwaha — Cybersecurity &amp; AI Systems Researcher · Game Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════════
+   THEME PALETTE: #0A0A0A (Void), #007BA7 (Cerulean), #FF2D95 (Cyber Magenta)
+   ══════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-void: #0A0A0A;
+  --bg-card: #0F1215;
+  --bg-elevated: #151A1F;
+  --bg-glass: rgba(15, 18, 21, 0.75);
+
+  --cerulean: #007BA7;
+  --cerulean-bright: #00A6DF;
+  --cerulean-dim: rgba(0, 123, 167, 0.14);
+  --cerulean-border: rgba(0, 123, 167, 0.35);
+
+  --magenta: #FF2D95;
+  --magenta-bright: #FF5DAA;
+  --magenta-dim: rgba(255, 45, 149, 0.14);
+  --magenta-border: rgba(255, 45, 149, 0.35);
+
+  --gradient-primary: linear-gradient(135deg, #007BA7 0%, #FF2D95 100%);
+  --gradient-text: linear-gradient(135deg, #00A6DF 0%, #FF5DAA 100%);
+  --gradient-glow: linear-gradient(135deg, rgba(0, 123, 167, 0.4) 0%, rgba(255, 45, 149, 0.4) 100%);
+  --gradient-border: linear-gradient(90deg, #007BA7, #FF2D95);
+
+  --white: #F5F7FA;
+  --grey-light: #A4B3C2;
+  --grey-text: #7E8D9B;
+  --grey-dark: #3E4B56;
+  --border-line: #1C232B;
+
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html {
+  background-color: var(--bg-void);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-void);
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 10% 15%, rgba(0, 123, 167, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 85%, rgba(255, 45, 149, 0.07) 0%, transparent 45%);
+}
+
+a { color: inherit; text-decoration: none; }
+
+.shell {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px 120px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   NAVIGATION
+   ══════════════════════════════════════════════════════════ */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border-line);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: var(--white);
+}
+.nav-badge-grad {
+  background: var(--gradient-primary);
+  color: #fff;
+  padding: 3px 8px;
+  font-size: 10px;
+  font-weight: 800;
+  border-radius: 3px;
+  box-shadow: 0 0 12px rgba(255, 45, 149, 0.3);
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  color: var(--grey-text);
+}
+.nav-links a { transition: color 0.2s; }
+.nav-links a:hover { color: var(--magenta-bright); }
+.nav-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--cerulean-bright);
+  border: 1px solid var(--cerulean-border);
+  background: var(--cerulean-dim);
+  padding: 6px 14px;
+  border-radius: 3px;
+}
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--magenta);
+  box-shadow: 0 0 8px var(--magenta);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* ══════════════════════════════════════════════════════════
+   HERO SECTION
+   ══════════════════════════════════════════════════════════ */
+.hero {
+  padding: 65px 0 75px;
+  position: relative;
+  border-bottom: 1px solid var(--border-line);
+}
+.hero-bg-outline {
+  position: absolute;
+  top: 15px;
+  left: -8px;
+  font-size: clamp(75px, 13vw, 160px);
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(0, 123, 167, 0.16);
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  z-index: 0;
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cerulean-bright);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-eyebrow::before {
+  content: '//';
+  color: var(--magenta);
+}
+
+.hero-title-name {
+  font-size: clamp(44px, 7vw, 72px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.name-gradient {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.hero-role-tag {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--grey-light);
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-role-tag .tag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--magenta);
+}
+
+.hero-pitch {
+  font-size: 14.5px;
+  color: var(--grey-light);
+  line-height: 1.75;
+  max-width: 560px;
+  margin-bottom: 32px;
+}
+.hero-pitch strong {
+  color: var(--white);
+  font-weight: 600;
+}
+.hero-pitch .hi-cerulean { color: var(--cerulean-bright); }
+.hero-pitch .hi-magenta { color: var(--magenta-bright); }
+
+/* Hero Action Buttons */
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+.btn-grad {
+  background: var(--gradient-primary);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 12px 26px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--magenta);
+  border-radius: 3px;
+  box-shadow: 0 4px 20px rgba(255, 45, 149, 0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-grad:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(255, 45, 149, 0.4);
+}
+.btn-outline {
+  background: var(--bg-card);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border: 1px solid var(--cerulean-border);
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-outline:hover {
+  border-color: var(--cerulean-bright);
+  color: var(--cerulean-bright);
+}
+
+/* Metrics Strip */
+.metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border-line);
+  border: 1px solid var(--border-line);
+  border-radius: 4px;
+  overflow: hidden;
+  max-width: 620px;
+}
+.metric-box {
+  background: var(--bg-card);
+  padding: 16px 18px;
+  position: relative;
+}
+.metric-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  opacity: 0.6;
+}
+.metric-val {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--white);
+  display: block;
+}
+.metric-val em {
+  color: var(--magenta-bright);
+  font-style: normal;
+}
+.metric-lbl {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey-text);
+  margin-top: 4px;
+  display: block;
+}
+
+/* Hero Right Side - Avatar & Active Research Cores */
+.hero-right {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+.avatar-card {
+  border: 1px solid var(--cerulean-border);
+  background: var(--bg-card);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 123, 167, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.avatar-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--magenta-border);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 35px rgba(255, 45, 149, 0.25);
+}
+.avatar-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  z-index: 2;
+}
+.avatar-img-wrap {
+  width: 100%;
+  flex: 1;
+  min-height: 380px;
+  background: var(--bg-elevated);
+  position: relative;
+  overflow: hidden;
+}
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+  filter: contrast(1.05) saturate(1.05);
+  transition: transform 0.4s ease;
+}
+.avatar-card:hover .avatar-img {
+  transform: scale(1.03);
+}
+.avatar-footer {
+  padding: 12px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cerulean-bright);
+  font-weight: 700;
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border-line);
+}
+
+.core-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.core-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-line);
+  padding: 14px 16px;
+  border-radius: 4px;
+  position: relative;
+  transition: border-color 0.2s;
+}
+.core-card:hover {
+  border-color: var(--cerulean-border);
+}
+.core-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--cerulean);
+}
+.core-card:nth-child(2)::before { background: var(--magenta); }
+.core-card:nth-child(3)::before { background: linear-gradient(to bottom, var(--cerulean), var(--magenta)); }
+
+.core-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.core-card-num {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--grey-text);
+}
+.core-card-status {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--magenta-bright);
+  font-weight: 700;
+}
+.core-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.core-card-desc {
+  font-size: 11.5px;
+  color: var(--grey-light);
+  line-height: 1.45;
+}
+.tech-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+.pill {
+  font-family: var(--mono);
+  font-size: 9px;
+  padding: 2px 8px;
+  border: 1px solid var(--border-line);
+  color: var(--grey-light);
+  background: var(--bg-elevated);
+  border-radius: 2px;
+}
+.pill.accent-cerulean {
+  border-color: var(--cerulean-border);
+  color: var(--cerulean-bright);
+  background: var(--cerulean-dim);
+}
+.pill.accent-magenta {
+  border-color: var(--magenta-border);
+  color: var(--magenta-bright);
+  background: var(--magenta-dim);
+}
+
+/* ══════════════════════════════════════════════════════════
+   SECTION LAYOUT & HEADINGS
+   ══════════════════════════════════════════════════════════ */
+.section {
+  padding: 65px 0;
+  border-bottom: 1px solid var(--border-line);
+}
+.section-meta {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cerulean-bright);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-meta::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gradient-border);
+  opacity: 0.35;
+}
+.section-category {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--magenta-bright);
+  margin-bottom: 6px;
+}
+.section-h2 {
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   ABOUT & PHILOSOPHY
+   ══════════════════════════════════════════════════════════ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: start;
+}
+.about-text {
+  font-size: 14px;
+  color: var(--grey-light);
+  line-height: 1.8;
+}
+.about-text + .about-text { margin-top: 16px; }
+.about-text strong { color: var(--white); }
+.philosophy-quote-box {
+  margin-top: 24px;
+  padding: 18px 22px;
+  background: var(--bg-card);
+  border-left: 3px solid var(--magenta);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--white);
+  line-height: 1.7;
+  position: relative;
+}
+.philosophy-quote-box::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--cerulean-border);
+}
+
+.philosophy-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border-line);
+  border: 1px solid var(--border-line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.pillar-card {
+  background: var(--bg-card);
+  padding: 18px 20px;
+  border-left: 3px solid var(--cerulean);
+  transition: background 0.2s;
+}
+.pillar-card:hover { background: var(--bg-elevated); }
+.pillar-card:nth-child(2) { border-left-color: var(--magenta); }
+.pillar-card:nth-child(3) { border-left-color: var(--cerulean-bright); }
+
+.pillar-id {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--magenta-bright);
+  letter-spacing: 0.14em;
+  margin-bottom: 4px;
+}
+.pillar-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.pillar-desc {
+  font-size: 11.5px;
+  color: var(--grey-text);
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════════════════════
+   FLAGSHIP RESEARCH SYSTEMS
+   ══════════════════════════════════════════════════════════ */
+.flagship-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-line);
+  padding: 30px;
+  margin-bottom: 24px;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.flagship-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gradient-primary);
+}
+.flagship-badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--magenta-bright);
+  background: var(--magenta-dim);
+  border: 1px solid var(--magenta-border);
+  padding: 3px 10px;
+  border-radius: 2px;
+  margin-bottom: 12px;
+}
+.flagship-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.flagship-lead {
+  font-size: 13.5px;
+  color: var(--grey-light);
+  line-height: 1.7;
+  max-width: 950px;
+  margin-bottom: 22px;
+}
+
+/* TemporalGNN Metrics Strip */
+.saai-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border-line);
+  border: 1px solid var(--border-line);
+  margin-bottom: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.saai-stat {
+  background: var(--bg-elevated);
+  padding: 16px 20px;
+  text-align: center;
+}
+.saai-num {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--white);
+  display: block;
+}
+.saai-num em {
+  color: var(--cerulean-bright);
+  font-style: normal;
+}
+.saai-lbl {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey-text);
+  margin-top: 4px;
+  display: block;
+}
+
+/* Pipeline Architecture Tabs */
+.layer-title-bar {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--grey-light);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.layer-title-bar::before {
+  content: '◈';
+  color: var(--cerulean-bright);
+}
+.layer-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.layer-tab {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-line);
+  padding: 10px 8px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  color: var(--grey-text);
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+.layer-tab.active {
+  background: var(--gradient-primary);
+  color: #fff;
+  border-color: var(--magenta);
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(255, 45, 149, 0.25);
+}
+
+.layer-detail-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-line);
+  border-left: 3px solid var(--cerulean);
+  padding: 18px 22px;
+  border-radius: 4px;
+}
+.layer-detail-head {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cerulean-bright);
+  margin-bottom: 4px;
+}
+.layer-detail-name {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.layer-detail-desc {
+  font-size: 12.5px;
+  color: var(--grey-light);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+
+/* 3 Core Research Deployments Grid */
+.deployments-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 26px;
+}
+.deploy-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-line);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  position: relative;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.deploy-card:hover {
+  border-color: var(--cerulean-border);
+  transform: translateY(-2px);
+}
+.deploy-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--cerulean);
+}
+.deploy-card:nth-child(2)::before { background: var(--magenta); }
+.deploy-card:nth-child(3)::before { background: var(--gradient-primary); }
+
+.deploy-card-header {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--magenta-bright);
+  margin-bottom: 8px;
+}
+.deploy-title {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.deploy-desc {
+  font-size: 12px;
+  color: var(--grey-light);
+  line-height: 1.6;
+  margin-bottom: 14px;
+  flex-grow: 1;
+}
+.deploy-bullets {
+  list-style: none;
+  margin-bottom: 16px;
+}
+.deploy-bullets li {
+  font-size: 11.5px;
+  color: var(--grey-light);
+  padding: 3px 0 3px 14px;
+  position: relative;
+}
+.deploy-bullets li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--cerulean-bright);
+  font-size: 10px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   THE SYSTEMS MATRIX (6 Core Research & Game Artifacts)
+   ══════════════════════════════════════════════════════════ */
+.matrix-filter-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 26px;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 7px 16px;
+  border: 1px solid var(--border-line);
+  background: var(--bg-card);
+  color: var(--grey-text);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-btn:hover {
+  border-color: var(--cerulean-bright);
+  color: var(--white);
+}
+.filter-btn.active {
+  background: var(--gradient-primary);
+  color: #fff;
+  border-color: var(--magenta);
+  font-weight: 700;
+}
+
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.matrix-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-line);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.matrix-card:hover {
+  border-color: var(--magenta-border);
+  transform: translateY(-2px);
+}
+.matrix-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.matrix-cat {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cerulean-bright);
+}
+.matrix-id {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--grey-text);
+}
+.matrix-name {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.matrix-desc {
+  font-size: 12px;
+  color: var(--grey-light);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+/* ══════════════════════════════════════════════════════════
+   ACADEMIC & INDUSTRY TIMELINE
+   ══════════════════════════════════════════════════════════ */
+.timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.timeline-card {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-line);
+  padding: 22px 26px;
+  border-radius: 5px;
+  border-left: 3px solid var(--cerulean);
+}
+.timeline-card:nth-child(even) {
+  border-left-color: var(--magenta);
+}
+.timeline-meta-col {}
+.timeline-dates {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--grey-text);
+  margin-bottom: 4px;
+}
+.timeline-org {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--cerulean-bright);
+}
+.timeline-card:nth-child(even) .timeline-org { color: var(--magenta-bright); }
+.timeline-loc {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  color: var(--grey-text);
+  margin-top: 2px;
+}
+
+.timeline-content-col h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.timeline-content-col p {
+  font-size: 12.5px;
+  color: var(--grey-light);
+  line-height: 1.6;
+}
+
+/* ══════════════════════════════════════════════════════════
+   DIRECT CONNECT & FOOTER
+   ══════════════════════════════════════════════════════════ */
+.direct-connect-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-line);
+  padding: 65px 30px;
+  text-align: center;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.direct-connect-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+}
+.dc-lead-tag {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--magenta-bright);
+  margin-bottom: 12px;
+}
+.dc-h2 {
+  font-size: clamp(28px, 5vw, 46px);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.dc-h2 span {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.dc-sub {
+  font-size: 14px;
+  color: var(--grey-light);
+  max-width: 650px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+.dc-links-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.dc-btn {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  padding: 12px 22px;
+  border: 1px solid var(--border-line);
+  background: var(--bg-elevated);
+  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.dc-btn:hover {
+  border-color: var(--cerulean-bright);
+  color: var(--cerulean-bright);
+  transform: translateY(-2px);
+}
+.dc-btn.pri {
+  background: var(--gradient-primary);
+  border-color: var(--magenta);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 4px 18px rgba(255, 45, 149, 0.25);
+}
+.dc-btn.pri:hover {
+  box-shadow: 0 6px 24px rgba(255, 45, 149, 0.4);
+}
+
+.footer {
+  margin-top: 50px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--grey-text);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-accent { color: var(--magenta-bright); }
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE DESIGN
+   ══════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero-content { grid-template-columns: 1fr; gap: 32px; }
+  .hero-right { grid-template-columns: 260px 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .deployments-grid { grid-template-columns: 1fr; }
+  .matrix-grid { grid-template-columns: 1fr 1fr; }
+  .layer-grid { grid-template-columns: repeat(3, 1fr); }
+  .timeline-card { grid-template-columns: 1fr; gap: 10px; }
+}
+@media (max-width: 640px) {
+  .shell { padding: 0 16px 80px; }
+  .nav-links { display: none; }
+  .hero-right { grid-template-columns: 1fr; gap: 24px; }
+  .avatar-card { max-width: 320px; margin: 0 auto; }
+  .matrix-grid { grid-template-columns: 1fr; }
+  .metrics-strip { grid-template-columns: repeat(2, 1fr); }
+  .saai-stats { grid-template-columns: repeat(2, 1fr); }
+  .layer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- TOP NAVIGATION -->
+  <header class="nav">
+    <div class="nav-brand">
+      <span class="nav-badge-grad">RK</span>
+      <span>ROHAN KUSHWAHA</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#flagships">Research Deployments</a>
+      <a href="#matrix">Systems Matrix</a>
+      <a href="#timeline">Education &amp; Experience</a>
+      <a href="#connect">Contact</a>
+    </nav>
+    <div class="nav-status">
+      <span class="pulse-dot"></span>
+      <span>CYBERSECURITY &amp; AI LABS</span>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-bg-outline">RESEARCH &amp; SYSTEMS</div>
+
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-eyebrow">M.TECH IT RESEARCHER · MMMUT GORAKHPUR</div>
+        <h1 class="hero-title-name">
+          <span class="name-gradient">ROHAN KUSHWAHA</span>
+        </h1>
+        <div class="hero-role-tag">
+          <span class="tag-dot"></span>
+          <span>CYBERSECURITY RESEARCHER · AI SYSTEMS ARCHITECT · GAMEPLAY PROGRAMMER</span>
+        </div>
+        <p class="hero-pitch">
+          Architecting <strong class="hi-cerulean">spatio-temporal graph neural networks</strong> for multi-vector botnet threat attribution, <strong class="hi-magenta">real-time hybrid intrusion detection</strong> combining ensemble ML with microsecond heuristic fast-paths, and explainable AI for memory-only ransomware defense — backed by production combat game engineering.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn-grad" href="#flagships">Explore Research Papers →</a>
+          <a class="btn-outline" href="#matrix">View Game Engines &amp; Code</a>
+        </div>
+
+        <div class="metrics-strip">
+          <div class="metric-box">
+            <span class="metric-val">6<em>+</em></span>
+            <span class="metric-lbl">Research Papers</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-val">96.65<em>%</em></span>
+            <span class="metric-lbl">TemporalGNN F1</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-val">0.08<em>µs</em></span>
+            <span class="metric-lbl">Fast-Path Filter</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-val">68<em>k+</em></span>
+            <span class="metric-lbl">Events/s Provenance</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <!-- Portrait Avatar Card -->
+        <div class="avatar-card">
+          <div class="avatar-img-wrap">
+            <img class="avatar-img" src="rohan_portrait.jpg" alt="Rohan Kushwaha" />
+          </div>
+          <div class="avatar-footer">RESEARCH SILICON ACTIVE</div>
+        </div>
+
+        <!-- Real-Time Research Cores -->
+        <div class="core-cards">
+          <div class="core-card">
+            <div class="core-card-header">
+              <span class="core-card-num">CORE 01.</span>
+              <span class="core-card-status">DEPLOYED</span>
+            </div>
+            <div class="core-card-title">TemporalGNN Engine</div>
+            <div class="core-card-desc">Spatio-temporal GraphSAGE + GRU sliding network snapshots with counterfactual edge attribution.</div>
+            <div class="tech-pill-row">
+              <span class="pill accent-cerulean">PyTorch Geometric</span>
+              <span class="pill accent-magenta">CUDA</span>
+              <span class="pill">GraphSAGE</span>
+            </div>
+          </div>
+
+          <div class="core-card">
+            <div class="core-card-header">
+              <span class="core-card-num">CORE 02.</span>
+              <span class="core-card-status">ACCEPTED</span>
+            </div>
+            <div class="core-card-title">Explainable Memory GNN</div>
+            <div class="core-card-desc">Transfer learning GCN with GNNExplainer for interpretable detection of memory-only ransomware.</div>
+            <div class="tech-pill-row">
+              <span class="pill accent-cerulean">CIC-MalMem-2022</span>
+              <span class="pill accent-magenta">XAI</span>
+              <span class="pill">GCN</span>
+            </div>
+          </div>
+
+          <div class="core-card">
+            <div class="core-card-header">
+              <span class="core-card-num">CORE 03.</span>
+              <span class="core-card-status">PRESENTED</span>
+            </div>
+            <div class="core-card-title">Real-Time Hybrid DDoS</div>
+            <div class="core-card-desc">Published IEEE framework uniting Random Forest, XGBoost, and 4-heuristic rule engine via OR/AND fusion.</div>
+            <div class="tech-pill-row">
+              <span class="pill accent-cerulean">Python</span>
+              <span class="pill accent-magenta">Scapy</span>
+              <span class="pill">Streamlit</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT & PHILOSOPHY -->
+  <section class="section" id="about">
+    <div class="section-meta">// 01.00 SEC: RESEARCH PROFILE &amp; ACADEMIC FOUNDATION</div>
+    <div class="section-category">RESEARCH ETHOS &amp; PHILOSOPHY</div>
+    <h2 class="section-h2">Background &amp; System Principles</h2>
+
+    <div class="about-grid">
+      <div>
+        <p class="about-text">
+          I am <strong>Rohan Kushwaha</strong> — a cybersecurity and artificial intelligence researcher currently pursuing my <strong>Master of Technology (M.Tech) in Information Technology</strong> at Madan Mohan Malaviya University of Technology (MMMUT), Gorakhpur. My undergraduate studies were completed at <strong>Vellore Institute of Technology (VIT), Bhopal</strong> with a Bachelor of Technology in Computer Science and Engineering (CGPA: 7.85).
+        </p>
+        <p class="about-text">
+          My technical expertise bridges two deeply interconnected domains: <strong>high-throughput cyber defense &amp; network intelligence</strong>, and <strong>real-time 3D interactive combat systems</strong>. In cybersecurity, I focus on overcoming the limitations of conventional intrusion detection by designing graph-native architectures (GraphSAGE, GNNExplainer), concept drift trackers, and cryptographic temporal provenance engines. In game engineering, I develop high-performance C++ melee and tactical shooter engines in Unreal Engine and Unity.
+        </p>
+
+        <div class="philosophy-quote-box">
+          "I engineer security architectures that bridge theoretical graph rigor with microsecond production throughput — moving from black-box heuristics to deterministic, explainable graph intelligence and autonomous threat attribution."
+        </div>
+      </div>
+
+      <div class="philosophy-pillars">
+        <div class="pillar-card">
+          <div class="pillar-id">01 // TOPOLOGICAL REASONING</div>
+          <div class="pillar-name">Spatio-Temporal Graph Ingress</div>
+          <div class="pillar-desc">Moving beyond tabular flow records. Discretizing continuous NetFlow streams into sliding graph snapshots to capture multi-hop topological convergence.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-id">02 // DETERMINISTIC XAI</div>
+          <div class="pillar-name">Counterfactual Threat Attribution</div>
+          <div class="pillar-desc">Automated edge-perturbation saliency to isolate malicious botnet IP endpoints and synthesize instant edge firewall mitigation rules (iptables &amp; BGP Flowspec).</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-id">03 // PROVENANCE INTEGRITY</div>
+          <div class="pillar-name">Uncertainty-Aware Temporal Auditing</div>
+          <div class="pillar-desc">Allen's Interval Algebra over 13 definite temporal relations anchored by Git-Merkle evidence vaults, eliminating false positives from clock skew.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLAGSHIP RESEARCH DEPLOYMENTS -->
+  <section class="section" id="flagships">
+    <div class="section-meta">// 02.00 SEC: FLAGSHIP RESEARCH DEPLOYMENTS</div>
+    <div class="section-category">PRODUCTION RESEARCH ARCHITECTURES</div>
+    <h2 class="section-h2">Flagship Security &amp; AI Systems</h2>
+    <p style="font-size: 13.5px; color: var(--grey-light); margin-bottom: 24px;">
+      Empirically validated research architectures evaluated on global benchmark datasets (CIC-DDoS2019, CICIDS-2017, CIC-MalMem-2022).
+    </p>
+
+    <!-- System 1: TemporalGNN -->
+    <div class="flagship-box">
+      <span class="flagship-badge">FLAGSHIP ARCHITECTURE // IEEE RESEARCH</span>
+      <h3 class="flagship-title">TemporalGNN: Spatio-Temporal Graph Neural Networks for Coordinated Botnet Detection</h3>
+      <p class="flagship-lead">
+        An inductive spatio-temporal graph neural network architecture engineered for coordinated multi-vector IoT botnet detection and automated threat attribution in enterprise networks. Discretizes NetFlow streams into sliding graph snapshots, applies 2-layer GraphSAGE neighborhood aggregation, dual global pooling (MeanPool ∥ MaxPool), and preserves multi-window temporal memory via Gated Recurrent Units (GRU).
+      </p>
+
+      <div class="saai-stats">
+        <div class="saai-stat">
+          <span class="saai-num">96.65<em>%</em></span>
+          <span class="saai-lbl">Weighted-F1 Score</span>
+        </div>
+        <div class="saai-stat">
+          <span class="saai-num">0.9941</span>
+          <span class="saai-lbl">PR-AUC (10 Families)</span>
+        </div>
+        <div class="saai-stat">
+          <span class="saai-num">126.1<em>ms</em></span>
+          <span class="saai-lbl">Edge GPU Latency</span>
+        </div>
+        <div class="saai-stat">
+          <span class="saai-num">17.0<em>MB</em></span>
+          <span class="saai-lbl">VRAM Consumption</span>
+        </div>
+      </div>
+
+      <div class="layer-title-bar">End-to-End TemporalGNN Pipeline Stages</div>
+      <div class="layer-grid">
+        <div class="layer-tab active">Stage 1: NetFlow Ingestion</div>
+        <div class="layer-tab">Stage 2: Dynamic Graph Builder</div>
+        <div class="layer-tab">Stage 3: GraphSAGE + GRU</div>
+        <div class="layer-tab">Stage 4: Counterfactual Attribution</div>
+        <div class="layer-tab">Stage 5: Aegis 2D Canvas SOC</div>
+      </div>
+
+      <div class="layer-detail-card">
+        <div class="layer-detail-head">STAGE 4 &amp; 5 // EXPLAINABILITY &amp; LIVE SOC COMMAND CENTER</div>
+        <div class="layer-detail-name">Counterfactual Edge-Perturbation Attribution &amp; Aegis Interface</div>
+        <div class="layer-detail-desc">
+          Computes host saliency drops ΔPu = P(Gt) − P(Gt \ {e}) to pinpoint malicious botnet IP endpoints with 92.4% attribution accuracy, automatically generating iptables and BGP Flowspec mitigation rules. Backed by the Aegis Command Center running at 60 FPS on pure 2D HTML5 canvas with zero drop GPU queuing.
+        </div>
+        <div class="tech-pill-row">
+          <span class="pill accent-cerulean">FastAPI Async Telemetry</span>
+          <span class="pill accent-magenta">Npcap Live Sniffer</span>
+          <span class="pill">CIC-DDoS2019 Benchmark</span>
+          <span class="pill">GTX 1650 Ti Edge GPU</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Peer-Reviewed & Preprint Systems Grid -->
+    <div class="deployments-grid">
+      <!-- System 2: CG-DHD -->
+      <div class="deploy-card">
+        <div class="deploy-card-header">ADVANCED NIDS // OOD ROBUSTNESS</div>
+        <div class="deploy-title">Confidence-Gated Dynamic Hierarchical Detection (CG-DHD)</div>
+        <div class="deploy-desc">
+          Decouples telemetry into a Tier-1 Fast-Path EWMA Heuristic Filter operating at 0.08 µs per packet for line-rate volumetric filtering, cascading uncertain flows to Tier-2 deep ML ensembles.
+        </div>
+        <ul class="deploy-bullets">
+          <li>0.08 µs EWMA Fast-Path packet header filtering</li>
+          <li>Information-Theoretic Concept Drift Tracking</li>
+          <li>Sliding window Jensen-Shannon Divergence</li>
+          <li>Calibrated predictive entropy uncertainty gating</li>
+        </ul>
+        <div class="tech-pill-row">
+          <span class="pill accent-cerulean">Information Theory</span>
+          <span class="pill accent-magenta">EWMA Fast-Path</span>
+          <span class="pill">Concept Drift</span>
+        </div>
+      </div>
+
+      <!-- System 3: Explainable Memory Ransomware -->
+      <div class="deploy-card">
+        <div class="deploy-card-header">IEEE ACCEPTED // MEMORY FORENSICS</div>
+        <div class="deploy-title">Transfer Learning Explainable GNN for Memory Ransomware</div>
+        <div class="deploy-desc">
+          Pioneering GNN framework addressing stealthy fileless and memory-resident ransomware. Converts volatile memory dump process graphs into graph topologies evaluated via GNNExplainer.
+        </div>
+        <ul class="deploy-bullets">
+          <li>Evaluated on CIC-MalMem-2022 dataset</li>
+          <li>Graph Convolutional Networks (GCN) with transfer learning</li>
+          <li>GNNExplainer for transparent memory artifact ranking</li>
+          <li>Zero false-positive verification on benign process graphs</li>
+        </ul>
+        <div class="tech-pill-row">
+          <span class="pill accent-cerulean">GNNExplainer</span>
+          <span class="pill accent-magenta">GCN</span>
+          <span class="pill">Memory Forensics</span>
+        </div>
+      </div>
+
+      <!-- System 4: ForensicGraph Health -->
+      <div class="deploy-card">
+        <div class="deploy-card-header">HEALTHCARE FORENSICS // PROVENANCE</div>
+        <div class="deploy-title">ForensicGraph·Health: Uncertainty-Aware Temporal Provenance</div>
+        <div class="deploy-desc">
+          Models cross-source audit log timestamps as uncertainty intervals using Allen's Interval Algebra over all 13 temporal relations, eliminating false violations caused by clock skew.
+        </div>
+        <ul class="deploy-bullets">
+          <li>11 domain rules (R01–R11) for privilege &amp; temporal checks</li>
+          <li>Git-backed Merkle evidence vault (&lt;1 ms commit latency)</li>
+          <li>Evaluated across 6 datasets &amp; 500 labeled attack events</li>
+          <li>Sustained 68,842 events/second analysis throughput</li>
+        </ul>
+        <div class="tech-pill-row">
+          <span class="pill accent-cerulean">Allen's Interval Algebra</span>
+          <span class="pill accent-magenta">Merkle Integrity</span>
+          <span class="pill">HIPAA Safe</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SYSTEMS & PROJECTS MATRIX -->
+  <section class="section" id="matrix">
+    <div class="section-meta">// 03.00 SEC: ENGINEERING ARTIFACTS MATRIX</div>
+    <div class="section-category">APPLIED SYSTEMS, RESEARCH &amp; GAMES</div>
+    <h2 class="section-h2">The Systems Matrix</h2>
+    <p style="font-size: 13.5px; color: var(--grey-light); margin-bottom: 24px;">
+      Interactive matrix encompassing published IEEE detection pipelines, 3D combat game engines, security testing tools, and VLSI digital design.
+    </p>
+
+    <div class="matrix-filter-bar">
+      <div class="filter-btn active">All Artifacts (6)</div>
+      <div class="filter-btn">Security &amp; AI Research</div>
+      <div class="filter-btn">Game Development &amp; 3D</div>
+      <div class="filter-btn">Hardware &amp; Recon</div>
+    </div>
+
+    <div class="matrix-grid">
+      <!-- Matrix 1: Real-Time Hybrid DDoS Engine -->
+      <div class="matrix-card">
+        <div class="matrix-card-top">
+          <span class="matrix-cat">IEEE Published Paper</span>
+          <span class="matrix-id">#SYS-01</span>
+        </div>
+        <div class="matrix-name">Real-Time Hybrid DDoS Stream Engine</div>
+        <div class="matrix-desc">
+          End-to-end intrusion detection system combining Random Forest and XGBoost with a 4-heuristic rule engine. Built with Scapy packet capture, 57 flow-based features, and a live Streamlit telemetry dashboard.
+        </div>
+        <div class="tech-pill-row">
+          <span class="pill accent-cerulean">Python / Scapy</span>
+          <span class="pill accent-magenta">XGBoost / RF</span>
+          <span class="pill">Streamlit</span>
+        </div>
+      </div>
+
+      <!-- Matrix 2: Project SLASH -->
+      <div class="matrix-card">
+        <div class="matrix-card-top">
+          <span class="matrix-cat">Action Combat Game</span>
+          <span class="matrix-id">#SYS-02</span>
+        </div>
+        <div class="matrix-name">Project SLASH: Melee Combat Engine</div>
+        <div class="matrix-desc">
+          Third-person action hack-and-slash game inspired by Sekiro and action RPGs. Developed in Unreal Engine &amp; Unity with C++, featuring combo-based combat, hitboxes, MetaHuman models, and enemy AI state machines.
+        </div>
+        <div class="tech-pill-row">
+          <span class="pill accent-cerulean">Unreal Engine / Unity</span>
+          <span class="pill accent-magenta">C++ / C#</span>
+          <span class="pill">MetaHuman</span>
+        </div>
+      </div>
+
+      <!-- Matrix 3: Advance Dork Search -->
+      <div class="matrix-card">
+        <div class="matrix-card-top">
+          <span class="matrix-cat">Security Tool / OSINT</span>
+          <span class="matrix-id">#SYS-03</span>
+        </div>
+        <div class="matrix-name">Advance Dork Search Engine</div>
+        <div class="matrix-desc">
+          Single-machine cybersecurity reconnaissance tool that constructs advanced search queries (Google dorks / open-directory queries) for authorized security audits, vulnerability discovery, and OSINT research.
+        </div>
+        <div class="tech-pill-row">
+          <span class="pill accent-cerulean">Cyber Recon</span>
+          <span class="pill accent-magenta">OSINT</span>
+          <span class="pill">Dork Builder</span>
+        </div>
+      </div>
+
+      <!-- Matrix 4: 3rd Person Tactical Shooter -->
+      <div class="matrix-card">
+        <div class="matrix-card-top">
+          <span class="matrix-cat">Tactical Shooter</span>
+          <span class="matrix-id">#SYS-04</span>
+        </div>
+        <div class="matrix-name">Tactical 3rd Person Shooter Engine</div>
+        <div class="matrix-desc">
+          PUBG-inspired tactical third-person shooter in Unreal Engine using C++ and Blender/Mixamo assets. Features dynamic weapon recoil physics, projectile ballistics, smooth movement locomotion, and audio spatialization.
+        </div>
+        <div class="tech-pill-row">
+          <span class="pill accent-cerulean">Unreal Engine</span>
+          <span class="pill accent-magenta">C++</span>
+          <span class="pill">Blender / Mixamo</span>
+        </div>
+      </div>
+
+      <!-- Matrix 5: Bootstrap Reliability Framework -->
+      <div class="matrix-card">
+        <div class="matrix-card-top">
+          <span class="matrix-cat">Statistical ML Research</span>
+          <span class="matrix-id">#SYS-05</span>
+        </div>
+        <div class="matrix-name">Bootstrap Reliability Feature Selection</div>
+        <div class="matrix-desc">
+          Mathematical stability framework for small high-dimensional datasets. Employs 1,000 bootstrap iterations and 95% Wilson confidence intervals to rank features by selection stability, predictive power, and redundancy.
+        </div>
+        <div class="tech-pill-row">
+          <span class="pill accent-cerulean">Bootstrap Sampling</span>
+          <span class="pill accent-magenta">Wilson CI</span>
+          <span class="pill">Mutual Info</span>
+        </div>
+      </div>
+
+      <!-- Matrix 6: VLSI RISC-V Processor Core -->
+      <div class="matrix-card">
+        <div class="matrix-card-top">
+          <span class="matrix-cat">Hardware / Digital Logic</span>
+          <span class="matrix-id">#SYS-06</span>
+        </div>
+        <div class="matrix-name">RISC-V VLSI Processor RTL Design</div>
+        <div class="matrix-desc">
+          Digital circuit design and RTL verification internship at Maven Silicon, Bengaluru. Implemented RISC-V processor architectural blocks using Verilog HDL, enhancing circuit efficiency by 20% in simulation benchmarks.
+        </div>
+        <div class="tech-pill-row">
+          <span class="pill accent-cerulean">Verilog HDL</span>
+          <span class="pill accent-magenta">RISC-V</span>
+          <span class="pill">RTL Synthesis</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACADEMIC & INDUSTRY TIMELINE -->
+  <section class="section" id="timeline">
+    <div class="section-meta">// 04.00 SEC: ACADEMIC &amp; PROFESSIONAL CHRONOLOGY</div>
+    <div class="section-category">EDUCATION, INTERNSHIPS &amp; TRAINING</div>
+    <h2 class="section-h2">Academic &amp; Professional Trajectory</h2>
+
+    <div class="timeline-list">
+      <!-- M.Tech -->
+      <div class="timeline-card">
+        <div class="timeline-meta-col">
+          <div class="timeline-dates">JUL 2025 – 2027 (PRESENT)</div>
+          <div class="timeline-org">MMMUT Gorakhpur</div>
+          <div class="timeline-loc">Gorakhpur, Uttar Pradesh, India</div>
+        </div>
+        <div class="timeline-content-col">
+          <h3>Master of Technology (M.Tech) in Information Technology</h3>
+          <p>
+            Department of Information Technology &amp; Computer Application (ITCA). Research specialization in Graph Neural Networks (GNNs), network intrusion detection systems, DDoS mitigation, and memory-only malware forensics. Roll No: 2025073110.
+          </p>
+        </div>
+      </div>
+
+      <!-- B.Tech -->
+      <div class="timeline-card">
+        <div class="timeline-meta-col">
+          <div class="timeline-dates">2021 – 2025</div>
+          <div class="timeline-org">VIT Bhopal University</div>
+          <div class="timeline-loc">Bhopal, Madhya Pradesh, India</div>
+        </div>
+        <div class="timeline-content-col">
+          <h3>Bachelor of Technology (B.Tech) in Computer Science &amp; Engineering</h3>
+          <p>
+            Graduated with <strong>CGPA: 7.85</strong>. Core coursework in Object-Oriented Programming, Database Management Systems, Cyber Security, Computer Networks, and Game Architecture. Active lead on competitive game design and security projects.
+          </p>
+        </div>
+      </div>
+
+      <!-- Maven Silicon Internship -->
+      <div class="timeline-card">
+        <div class="timeline-meta-col">
+          <div class="timeline-dates">AUG 2024 – OCT 2024</div>
+          <div class="timeline-org">Maven Silicon Softech Pvt Ltd</div>
+          <div class="timeline-loc">Bengaluru, Karnataka, India</div>
+        </div>
+        <div class="timeline-content-col">
+          <h3>VLSI Design Methodologies Intern</h3>
+          <p>
+            Completed a 12-week intensive industrial training program focused on RISC-V processor architecture and Verilog HDL. Gained practical mastery of digital circuit design, RTL simulation, and hardware verification, contributing to a 20% circuit efficiency gain.
+          </p>
+        </div>
+      </div>
+
+      <!-- Monolith Labs Training -->
+      <div class="timeline-card">
+        <div class="timeline-meta-col">
+          <div class="timeline-dates">INTENSIVE TRAINING</div>
+          <div class="timeline-org">Monolith Labs</div>
+          <div class="timeline-loc">Chennai, Tamil Nadu, India</div>
+        </div>
+        <div class="timeline-content-col">
+          <h3>Unreal Engine 3D &amp; Game Mechanics Training</h3>
+          <p>
+            Intensive program mastering Unreal Engine for real-time game development. Engineered 3 interactive combat demos, deepening technical mastery of character animation trees, 3D physics rendering, and gameplay mechanics.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECT CONNECT -->
+  <section class="section" id="connect">
+    <div class="direct-connect-box">
+      <div class="dc-lead-tag">// DIRECT COMMUNICATIONS &amp; DISPATCH</div>
+      <h2 class="dc-h2">Let's Engineer <span>Secure &amp; Intelligent Systems.</span></h2>
+      <p class="dc-sub">
+        Open for cybersecurity research collaborations, graph neural network initiatives, security engineering roles, and gameplay programming contracts.
+      </p>
+      <div class="dc-links-row">
+        <a class="dc-btn pri" href="mailto:kushwaharohan2003@gmail.com">
+          <span>✉</span> kushwaharohan2003@gmail.com
+        </a>
+        <a class="dc-btn" href="mailto:2025073110@mmmut.ac.in">
+          <span>🏛</span> 2025073110@mmmut.ac.in
+        </a>
+        <a class="dc-btn" href="https://github.com/Pepe9793" target="_blank">
+          <span>⌥</span> github.com/Pepe9793
+        </a>
+        <a class="dc-btn" href="https://linkedin.com/in/rohan9793" target="_blank">
+          <span>in</span> linkedin.com/in/rohan9793
+        </a>
+        <a class="dc-btn" href="tel:+917073641441">
+          <span>✆</span> +91-7073641441
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>&copy; 2026 Rohan Kushwaha. Built with <span class="footer-accent">Noir, Cerulean (#007BA7) &amp; Cyber Magenta (#FF2D95)</span>. Powered by first-principles engineering.</div>
+    <div>MMMUT ITCA · Gorakhpur, India</div>
+  </footer>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SWARM REBUILD RUNTIME
+     Repo: https://github.com/DhvanilPatel/swarm-cursors
+     ══════════════════════════════════════════════════════════ -->
+<script src="swarm.js"></script>
+
+</body>
+</html>
