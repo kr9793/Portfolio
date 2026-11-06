@@ -6,7 +6,7 @@
 ---
 
 ## ⚡ Live Deployment
-Hosted on GitHub Pages: **[Live Portfolio](https://pepe9793.github.io/portfolio/)**
+Hosted on GitHub Pages: **[Live Portfolio](https://kr9793.github.io/Portfolio/)**
 
 ---
 
@@ -36,3 +36,4 @@ Hosted on GitHub Pages: **[Live Portfolio](https://pepe9793.github.io/portfolio/
 
 ## 📜 License & Copyright
 © 2026 Rohan Kushwaha. Built with high-precision engineering & swarm telemetry.
+
