@@ -1,4 +1,4 @@
-# Rohan Kushwaha — Interactive Research & Engineering Portfolio
+# Rohan Kushwaha — Research & Engineering Portfolio
 
 > **M.Tech IT Researcher** (MMMUT Gorakhpur) · **B.Tech CSE** (VIT Bhopal)  
 > Specializing in **Spatio-Temporal Graph Neural Networks (GNNs)**, **Network Intrusion Detection**, **Volatile Memory Forensics**, and **C++ Game Engine Architecture**.
